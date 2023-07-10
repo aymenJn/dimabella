@@ -1,11 +1,11 @@
 import React ,{createContext, useState} from "react";
 const Socketcontext = createContext() ; 
 const Mycontext = ({children}) => {
-const [username, setusername] = useState({})
+  
+const [modellist,setmodellist] = useState()
 return(
     <Socketcontext.Provider value={{
-        username, setusername
-
+        modellist,setmodellist
     }}>
 {children}
     </Socketcontext.Provider>

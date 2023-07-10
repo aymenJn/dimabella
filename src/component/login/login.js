@@ -1,22 +1,34 @@
-import React,{useContext} from 'react'
+import React ,{useEffect,useContext} from 'react'
 import * as s from "./login.style"
 import { Socketcontext } from '../setting/context'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { onSnapshot,query ,collection} from 'firebase/firestore'
+import { db } from '../setting/firebase'
 const Login = () => {
-  const {setusername} = useContext(Socketcontext)
+  const messageref = collection(db,"stock")
+const {setmodellist} = useContext(Socketcontext)
+  const navigate = useNavigate();
+  useEffect(()=>{
+    const querymerssage = query(messageref) 
+    onSnapshot(querymerssage , (snapshot)=>{
+    let clients = [] ; 
+      snapshot.forEach((doc) =>{                                                                                                                                           
+        clients.push({
+          ...doc.data() ,id : doc.id
+        })
+    })
   
+    if(clients.length > 0) 
+  
+    setmodellist(clients)
+
+    })
+
+  },[])
   const enrgistre = () =>{
-const name = document.getElementById("name").value
-const tel = document.getElementById("tel").value
-const userup = {name : name , tel : tel}
-setusername(user => ({
-  ...user,
-  ...userup
-})
 
+navigate("/choose")
 
-
-)
 
   }
 
@@ -31,16 +43,16 @@ setusername(user => ({
   <s.inputbox>
     
     <s.inputField  type ="text" required="required" id ="name" />
-    <s.username> Username </s.username>
+    <s.username> اسم المستخدم </s.username>
     <s.i></s.i>
      </s.inputbox>
      <s.inputbox>
     
-    <s.inputField  type ="tel" required id ="tel"  pattern="[0-9]{8}" />
-    <s.username> telephone </s.username>
+    <s.inputField  type ="password" required id ="tel"  />
+    <s.username> كلمة السر </s.username>
     <s.i></s.i>
      </s.inputbox>
-   <Link to="/first" ><s.inputsubmit   type="submit" value="تسجيل " onClick={ ()=>enrgistre()} />   </Link> 
+   <s.inputsubmit id="button"    type="submit" value="تسجيل " onClick={ ()=>enrgistre()} />   
 
 
   </s.Form>

@@ -16,14 +16,14 @@ display : flex ;
 justify-content : center ; 
 align-items : center ; 
 min-height : 100vh ; 
-background : #23242a
+background : #23242a;
 `
 
 
 
 export const box = styled.div`
 position : relative ; 
-min-width : 400px ; 
+min-width : 70%; 
 min-height : 420px ; 
 background : #1c1c1c; 
 border-radius : 8px ; 
@@ -114,7 +114,7 @@ margin-top : 35px ;
 `
 export const inputField = styled.input`
 position : relative ; 
-width : 100% ; 
+width : 70% ; 
  
 padding : 20px 10px 10px ; 
 background : transparent ; 
@@ -150,7 +150,7 @@ export const i = styled.i`
 position : absolute ; 
 left : 0; 
 bottom : 0; 
-width : 100% ; 
+width : 55% ; 
 height : 5px ; 
 background : #fff ; 
 border-radius : 4px ; 
