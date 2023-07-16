@@ -28,6 +28,9 @@ export const card = styled.div`
 min-width : 300px ; 
 min-height : 400px ; 
 margin-top : 40px ; 
+
+margin-left : 40px ; 
+
 border-radius : 20px ; 
 display : flex ; 
 justify-content : center ; 

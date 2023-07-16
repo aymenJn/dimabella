@@ -2,31 +2,38 @@ import React , {useContext} from "react";
 import * as s from "./stockage.style"
 import { Socketcontext } from "../setting/context";
 import { Link } from "react-router-dom";
+import { Input } from "../../design/input/input";
+import { Button } from "bootstrap";
+import { Image } from "../../design/image/image";
 const Stockage = () => {
 
-    const {modellist} = useContext(Socketcontext)
-    console.log(modellist)
+    const {modellist, setchart} = useContext(Socketcontext)
+  const Add = (data) => {
+const quantity = document.getElementById(data.name).value
+alert(quantity)
+  }
 const listjsx = modellist.map((model)=>{
-console.log("test" , model)
+
     return(
         <s.card>
+            <Image props ={model.data.dowload} />
             <s.title>
             {  model.data.name}
             
             </s.title>
-            <s.title1>
+            <s.title1 >
                 {model.data.pvf}
             </s.title1>
-            <s.input type="number" placeholder="quantity" >
+            <Input props = {{name:"quantity " , type : "number"  , id : model.data.name }}  />
+            <button onClick={()=> Add(model.data)}>
+                SAVE
+            </button>
 
-            </s.input>
-            <s.button>
-                enregistre
-            </s.button>
+            
         </s.card>
     )
 })
-console.log("test" , modellist)
+
     return(
         <s.Maincontainer>
             <s.cardhaler>
